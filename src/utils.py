@@ -1,3 +1,6 @@
+import pandas as pd
+import numpy as np
+
 def add_cyclical_features(df, time_col='ds'):
     """
     Add cyclical time features (halfhour, day, month encoded in sin and cos functions)
