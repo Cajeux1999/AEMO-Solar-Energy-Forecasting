@@ -55,25 +55,6 @@ def add_lag_features(df, target_col='y', lags=[]):
 
     return df
 
-def plot_pareto(front):
-    front = np.array(front)  
-
-    x = front[:, 0]
-    y = front[:, 1]
-
-    order = np.argsort(x)
-    x_sorted = x[order]
-    y_sorted = y[order]
-
-    plt.figure(figsize=(8, 5))
-    plt.scatter(x, y, alpha=0.6, label="Pareto Front")
-
-    plt.xlabel("Accuracy [RMSE]")
-    plt.ylabel("Time [s]")
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
 def plot_and_save_pareto(front, pop, experiment_name='exp'):
     # Create a unique filename using a timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -92,9 +73,8 @@ def plot_and_save_pareto(front, pop, experiment_name='exp'):
     plt.figure(figsize=(8, 5))
     plt.scatter(x, y, color='blue', alpha=0.7, edgecolors='k', label="Pareto Front (Real)")
     
-    plt.xlabel("Accuracy [Metric]")
+    plt.xlabel("Accuracy [RMSE]")
     plt.ylabel("Time [s]")
-    plt.title(f"Pareto Front: {experiment_name}")
     plt.legend()
     plt.grid(True, linestyle='--', alpha=0.6)
 
