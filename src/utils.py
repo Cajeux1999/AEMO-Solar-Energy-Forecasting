@@ -60,10 +60,6 @@ def plot_pareto(front):
     x = front[:, 0]
     y = front[:, 1]
 
-    order = np.argsort(x)
-    x_sorted = x[order]
-    y_sorted = y[order]
-
     plt.figure(figsize=(8, 5))
     plt.scatter(x, y, alpha=0.6, label="Pareto Front")
 
