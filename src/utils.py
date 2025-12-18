@@ -71,7 +71,7 @@ def plot_and_save_pareto(front, pop, experiment_name='exp'):
     y = -front[:, 1] if np.all(front[:, 1] < 0) else front[:, 1]
 
     plt.figure(figsize=(8, 5))
-    plt.scatter(x, y, color='blue', alpha=0.7, edgecolors='k', label="Pareto Front (Real)")
+    plt.scatter(x, y, color='blue', alpha=0.7, edgecolors='k', label="Pareto Front")
     
     plt.xlabel("Accuracy [RMSE]")
     plt.ylabel("Time [s]")
