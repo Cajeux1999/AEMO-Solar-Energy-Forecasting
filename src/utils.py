@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from datetime import datetime
 
 def add_cyclical_features(df, time_col='ds'):
     """
@@ -52,3 +53,33 @@ def add_lag_features(df, target_col='y', lags=[]):
         df[f'y_lag_{lag}'] = df[target_col].shift(lag)
 
     return df
+
+def plot_pareto(front):
+    front = np.array(front)  
+
+    x = front[:, 0]
+    y = front[:, 1]
+
+    order = np.argsort(x)
+    x_sorted = x[order]
+    y_sorted = y[order]
+
+    plt.figure(figsize=(8, 5))
+    plt.scatter(x, y, alpha=0.6, label="Pareto Front")
+
+    plt.xlabel("Accuracy [RMSE]")
+    plt.ylabel("Time [s]")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+def store_results(front, pop, experiment_name='exp'):
+    # Create a unique filename using a timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"{experiment_name}_{timestamp}.npz"
+    
+    # Save the data
+    np.savez_compressed(filename, front=front, pop=pop)
+    
+    print(f"Successfully saved to: {filename}")
+    return filename
