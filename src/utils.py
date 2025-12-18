@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 def add_cyclical_features(df, time_col='ds'):
     """
